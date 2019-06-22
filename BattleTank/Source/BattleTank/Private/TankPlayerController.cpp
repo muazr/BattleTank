@@ -2,6 +2,7 @@
 
 
 #include "TankPlayerController.h"
+#include "Engine/World.h"
 
 void ATankPlayerController::BeginPlay()
 {
@@ -42,12 +43,12 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
+		UE_LOG(LogTemp, Warning, TEXT("HitLocation: %s"), *HitLocation.ToString());
 		// TODO Tell controlled tank to aim at this point
 	}
 }
 
-bool ATankPlayerController::GetSightRayHitLocation(FVector &OutHitLocation) const
+bool ATankPlayerController::GetSightRayHitLocation(FVector &HitLocation) const
 {
 	// Find the crosshair position
 	int32 ViewportSizeX, ViewportSizeY;
@@ -61,11 +62,8 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector &OutHitLocation) cons
 		return false;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Look direction: %s"), *LookDirection.ToString());
-
-	// TODO Line-trace along that look direction, and see what we hit (up to max range)
-
-	return true;
+	// Line-trace along that look direction, and see what we hit (up to max range)
+	return GetLookVectorHitLocation(LookDirection, HitLocation);
 }
 
 bool ATankPlayerController::GetLookDirection(const FVector2D &ScreenLocation, FVector &LookDirection) const
@@ -74,4 +72,20 @@ bool ATankPlayerController::GetLookDirection(const FVector2D &ScreenLocation, FV
 
 	// "De-project" the screen position of the crosshair to a world direction
 	return DeprojectScreenPositionToWorld(ScreenLocation.X, ScreenLocation.Y, CameraWorldLocation, LookDirection);
+}
+
+bool ATankPlayerController::GetLookVectorHitLocation(const FVector &LookDirection, FVector &HitLocation) const
+{
+	FHitResult Hit;
+	FVector StartLocation = PlayerCameraManager->GetCameraLocation();
+	FVector EndLocation = StartLocation + LookDirection * LineTraceRange;
+
+	if (!GetWorld()->LineTraceSingleByChannel(Hit, StartLocation, EndLocation, ECollisionChannel::ECC_Visibility))
+	{
+		return false;
+	}
+
+	HitLocation = Hit.Location;
+
+	return true;
 }
