@@ -25,5 +25,5 @@ private:
 
 	ATank *GetPlayerTank() const;
 
-	void AimAt(ATank *Tank);
+	void AimAt(const ATank *Tank);
 };

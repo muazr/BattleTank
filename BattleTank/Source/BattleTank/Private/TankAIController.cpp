@@ -57,7 +57,7 @@ ATank * ATankAIController::GetPlayerTank() const
 	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
 }
 
-void ATankAIController::AimAt(ATank *Tank)
+void ATankAIController::AimAt(const ATank *Tank)
 {
 	ATank *AITank = GetControlledTank();
 	if (!AITank)
