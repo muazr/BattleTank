@@ -35,5 +35,5 @@ public:
 
 private:
 	UPROPERTY(EditAnywhere, Category=Firing)
-	float LaunchSpeed = 10000.f; // TODO Find sensible default
+	float LaunchSpeed = 10000.0f; // TODO Find sensible default
 };
