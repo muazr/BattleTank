@@ -37,6 +37,9 @@ public:
 
 	void AimAt(const FVector &HitLocation);
 
+	UFUNCTION(BlueprintCallable, Category=Firing)
+	void Fire();
+
 private:
 	UPROPERTY(EditAnywhere, Category=Firing)
 	float LaunchSpeed = 5000.0f;
