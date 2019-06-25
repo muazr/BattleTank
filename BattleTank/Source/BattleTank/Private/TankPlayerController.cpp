@@ -24,10 +24,7 @@ ATank *ATankPlayerController::GetControlledTank() const
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
-	if (!GetControlledTank())
-	{
-		return;
-	}
+	if (!GetControlledTank()) return;
 
 	FVector HitLocation;
 
@@ -46,10 +43,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector &HitLocation) const
 	FVector2D ScreenLocation(CrosshairXLocation * ViewportSizeX, CrosshairYLocation * ViewportSizeY);
 	FVector LookDirection;
 
-	if (!GetLookDirection(ScreenLocation, LookDirection))
-	{
-		return false;
-	}
+	if (!GetLookDirection(ScreenLocation, LookDirection)) return false;
 
 	// Line-trace along that look direction, and see what we hit (up to max range)
 	return GetLookVectorHitLocation(LookDirection, HitLocation);
