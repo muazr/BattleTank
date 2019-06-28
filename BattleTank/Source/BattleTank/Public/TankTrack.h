@@ -22,9 +22,14 @@ public:
 	void SetThrottle(float Throttle);
 	
 protected:
+	virtual void BeginPlay() override;
+
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
 private:
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult &Hit);
+
 	// Max force per track, in kg cm /(s^2)
 	UPROPERTY(EditDefaultsOnly)
 	float TrackMaxDrivingForce = 40000000.0f; // Assume 40 tonne tank and 10g acceleration
