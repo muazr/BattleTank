@@ -30,7 +30,13 @@ private:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult &Hit);
 
+	void DriveTrack();
+
+	void ApplySidewaysForce();
+
 	// Max force per track, in kg cm /(s^2)
 	UPROPERTY(EditDefaultsOnly)
-	float TrackMaxDrivingForce = 40000000.0f; // Assume 40 tonne tank and 10g acceleration
+	float TrackMaxDrivingForce = 50000000.0f; // Assume 50 tonne tank and 10g acceleration
+
+	float CurrentThrottle = 0.0f;
 };
