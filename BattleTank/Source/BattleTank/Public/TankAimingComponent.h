@@ -35,6 +35,8 @@ public:
 
 	void AimAt(const FVector &HitLocation);
 
+	EFiringState GetFiringState() const;
+
 protected:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
