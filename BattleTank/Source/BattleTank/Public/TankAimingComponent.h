@@ -38,8 +38,8 @@ public:
 
 	EFiringState GetFiringState() const;
 
-	UFUNCTION(BlueprintCallable, Category = "Firing")
-	int GetAmmoCount() const;
+	UFUNCTION(BlueprintCallable, Category="Firing")
+	int32 GetAmmoCount() const;
 
 protected:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
@@ -54,17 +54,17 @@ private:
 
 	bool IsBarrelMoving() const;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	UPROPERTY(EditDefaultsOnly, Category="Firing")
 	float LaunchSpeed = 5000.0f;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY(EditDefaultsOnly, Category="Setup")
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
+	UPROPERTY(EditDefaultsOnly, Category="Firing")
 	float ReloadTimeInSeconds = 3.0f;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Firing")
-	int AmmoCount = 3;
+	UPROPERTY(EditDefaultsOnly, Category="Firing")
+	int32 AmmoCount = 3;
 
 	double LastFireTime = 0.0;
 
