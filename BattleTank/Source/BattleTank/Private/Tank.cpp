@@ -23,6 +23,12 @@ float ATank::TakeDamage(float DamageAmount, FDamageEvent const &DamageEvent, ACo
 
 	CurrentHealth -= DamageToApply;
 
+	if (DamageToApply > 0 && CurrentHealth <= 0)
+	{
+		// Broadcast death
+		OnDeath.Broadcast();
+	}
+
 	return DamageToApply;
 }
 

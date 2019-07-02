@@ -23,4 +23,10 @@ protected:
 	// How close the AI tank can get
 	UPROPERTY(EditDefaultsOnly, Category="Setup")
 	float AcceptanceRadius = 6000.0f;
+
+private:
+	virtual void SetPawn(APawn *InPawn) override;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 };
