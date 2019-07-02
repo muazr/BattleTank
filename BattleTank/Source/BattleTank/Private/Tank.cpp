@@ -15,3 +15,14 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+float ATank::TakeDamage(float DamageAmount, FDamageEvent const &DamageEvent, AController *EventInstigator, AActor *DamageCauser)
+{
+	int32 DamagePoints = FPlatformMath::RoundToInt(DamageAmount);
+	int32 DamageToApply = FMath::Clamp<int32>(DamagePoints, 0, CurrentHealth);
+	UE_LOG(LogTemp, Warning, TEXT("DamageToApply: %d"), DamageToApply);
+
+	CurrentHealth -= DamageToApply;
+
+	return DamageToApply;
+}

@@ -35,6 +35,12 @@ private:
 	UFUNCTION()
 	void OnTimerExpire();
 
+	UPROPERTY(EditDefaultsOnly, Category="Setup")
+	float DestroyDelay = 10.0f;
+
+	UPROPERTY(EditDefaultsOnly, Category="Setup")
+	float ProjectileDamage = 20.0;
+
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UStaticMeshComponent *CollisionMesh = nullptr;
 
@@ -46,9 +52,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	URadialForceComponent *ExplosionForce = nullptr;
-
-	UPROPERTY(EditDefaultsOnly, Category="Setup")
-	float DestroyDelay = 10.0f;
 
 	UProjectileMovementComponent *ProjectileMovement = nullptr;
 };
