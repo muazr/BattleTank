@@ -51,5 +51,8 @@ void ATankAIController::Tick(float DeltaTime)
 
 void ATankAIController::OnPossessedTankDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s OnDeath broadcast received"), *GetPawn()->GetName());
+	APawn *PossessedTank = GetPawn();
+	if (!ensure(PossessedTank)) return;
+
+	PossessedTank->DetachFromControllerPendingDestroy();
 }

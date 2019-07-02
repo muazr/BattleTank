@@ -25,10 +25,10 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardsCrosshair()
 {
+	if (!GetPawn()) return;
+
 	auto AimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	if (!ensure(AimingComponent)) return;
-
-	if (!GetPawn()) return;
 
 	FVector HitLocation;
 
@@ -87,11 +87,11 @@ void ATankPlayerController::SetPawn(APawn *InPawn)
 		if (!ensure(PossessedTank)) return;
 
 		// Subscribe our local method to the tank's death event
-		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnTankDeath);
+		PossessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnPossessedTankDeath);
 	}
 }
 
-void ATankPlayerController::OnTankDeath()
+void ATankPlayerController::OnPossessedTankDeath()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s OnDeath broadcast received"), *GetPawn()->GetName());
+	StartSpectatingOnly();
 }
