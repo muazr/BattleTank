@@ -61,10 +61,10 @@ private:
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UPROPERTY(EditDefaultsOnly, Category="Firing")
-	float ReloadTimeInSeconds = 3.0f;
+	float ReloadTimeInSeconds = 2.0f;
 
 	UPROPERTY(EditDefaultsOnly, Category="Firing")
-	int32 AmmoCount = 3;
+	int32 AmmoCount = 20;
 
 	double LastFireTime = 0.0;
 
