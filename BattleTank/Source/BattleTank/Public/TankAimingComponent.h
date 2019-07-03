@@ -50,7 +50,7 @@ protected:
 	EFiringState FiringState = EFiringState::Reloading;
 
 private:
-	void MoveBarrelTowards(const FVector &AimDirection);
+	void MoveBarrelTowards(const FVector &TargetAimDirection);
 
 	bool IsBarrelMoving() const;
 
