@@ -29,6 +29,11 @@ protected:
 private:
 	void SetupConstraint();
 
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent *HitComponent, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult &Hit);
+
+	void ApplyForce();
+
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UPhysicsConstraintComponent *SpringConstraint = nullptr;
 
@@ -40,4 +45,6 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	USphereComponent *Wheel = nullptr;
+
+	float TotalForceMagnitudeThisFrame = 0.0f;
 };
